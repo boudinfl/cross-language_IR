@@ -1,0 +1,113 @@
+\documentclass[12pt,aspectratio=43,dvipsnames,table]{beamer}
+\usepackage[french]{babel}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{url}
+\usepackage{multirow}
+\usepackage{euler}
+% \usepackage{color}
+
+\usetheme{default}
+\useinnertheme{default}
+\useoutertheme{default}
+\usefonttheme{serif}
+\usecolortheme[named=WildStrawberry]{structure}
+
+% Marges autour des slides
+\setbeamersize{text margin left=5mm, text margin right=5mm}
+
+% Suppression des symboles de navigation
+\beamertemplatenavigationsymbolsempty
+
+% Définition du pied de page
+\setbeamertemplate{footline} {
+  \hfill{
+    \insertshortdate ~- %
+    page \insertframenumber~sur~\inserttotalframenumber %
+    %\hspace*{0.1cm}
+  } \vspace*{0.05cm}
+}
+
+% Définition des espacements des listes
+\setlength{\leftmargini}{0.6cm}
+\setlength{\leftmarginii}{0.4cm}
+\setlength{\leftmarginiii}{0.4cm}
+
+\title{Recherche d'information cross-lingue}
+\subtitle{Applications multilingues - module X9IT100}
+\author{Florian Boudin}
+\institute{Département informatique, Université de Nantes}
+\date[30 juillet 2013 / Rév.~1]{Révision~1 du 30 juillet 2012}
+
+\begin{document}
+
+
+%-B--------------------------------------------------------------------------B-%
+% frame titre
+\frame[plain]{\titlepage}
+%-E--------------------------------------------------------------------------E-%
+
+
+%-B--------------------------------------------------------------------------B-%
+\begin{frame}
+    \frametitle{Préface}
+    \begin{itemize} \itemsep10pt
+        \item Notions abordées dans ce module
+        \begin{itemize}
+            \item Rappel des notions de recherche d'information
+            \item CLIR
+        \end{itemize}
+        \item Volume horaire (2h40)
+        \item Cours basé sur
+        \begin{itemize}
+            \item \cite{DBLP:series/synthesis/2010Nie} Jian-Yun Nie, 
+                  \textit{Cross-Language Information Retrieval}
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+%-E--------------------------------------------------------------------------E-%
+
+
+%-B--------------------------------------------------------------------------B-%
+\begin{frame}
+    \frametitle{Introduction}
+    \begin{itemize} \itemsep10pt
+        \item La Recherche d'Information (RI) fait partie de notre vie 
+              quotidienne.
+        \item Dans la plupart des cas, nous recherchons des documents rédigés 
+              dans notre langue maternelle, en général la langue utilisée dans
+              la requête.
+        \item Cependant, l'information pertinente n'est pas toujours disponible
+              dans notre langue maternelle, et le web offre une mine 
+              d'information riche et multilingue à laquelle nous souhaitons 
+              avoir accès.
+        \item \'Emergence de la problématique de la RI cross-lingue
+    \end{itemize}
+\end{frame}
+%-E--------------------------------------------------------------------------E-%
+
+%-B--------------------------------------------------------------------------B-%
+\begin{frame}
+
+    \frametitle{}
+
+\end{frame}
+%-E--------------------------------------------------------------------------E-%
+
+% %-B------------------------------PLAN----------------------------------------B-%
+% \begin{frame}
+% \frametitle{Plan}
+% \tableofcontents[sectionstyle=show,subsectionstyle=hide,subsubsectionstyle=hide]
+% \end{frame}
+% %-E--------------------------------------------------------------------------E-%
+
+%-B--------------------------------------------------------------------------B-%
+\begin{frame}
+    \frametitle{References}
+    \bibliographystyle{alpha}
+    \bibliography{bibliography}
+\end{frame}
+%-E--------------------------------------------------------------------------E-%
+
+
+\end{document}
