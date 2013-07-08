@@ -1,11 +1,12 @@
 \documentclass[12pt,aspectratio=43,dvipsnames,table]{beamer}
-\usepackage[french]{babel}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
+\usepackage[russian,francais]{babel}
 \usepackage{url}
 \usepackage{multirow}
 \usepackage{mathtools}
 % \usepackage{color}
+\usepackage{CJKutf8}
 
 \usetheme{default}
 \useinnertheme{default}
@@ -110,7 +111,7 @@
     \frametitle{Le processus de recherche d'information}
     \begin{figure}
     \centering
-    \includegraphics[width=0.75\textwidth]{img/typicalIR.pdf}
+    \includegraphics[width=0.7\textwidth]{img/typicalIR.pdf}
     \caption{Processus de recherche d'information (Figure 1.1 
              de~\cite{DBLP:series/synthesis/2010Nie}).}
     \end{figure}
@@ -254,9 +255,9 @@
       \item Cette situation a changée avec l'avènement du web et la 
             disponibilité de grandes collections de documents dans de nombreuses 
             langues.
-      \item Bien que les traitements ``basiques'' développés pour les langues 
-            européennes sont en partie ré-utilisable pour d'autres lanugues, 
-            certaines nécessitent des traitements spécifiques.
+      \item Les traitements ``basiques'' développés pour les langues 
+            européennes sont en partie ré-utilisable pour d'autres langues, 
+            mais certaines nécessitent des traitements spécifiques.
     \end{itemize}
 \end{frame}
 %-E--------------------------------------------------------------------------E-%
@@ -264,33 +265,128 @@
 
 %-B--------------------------------------------------------------------------B-%
 \begin{frame}
-    \frametitle{Langues Européennes}
+    \frametitle{Le processus de recherche d'information}
+    \begin{figure}
+    \centering
+    \includegraphics<1>[width=0.7\textwidth]{img/typicalIR.pdf}
+    \includegraphics<2>[width=0.7\textwidth]{img/preprocIR.pdf}
+    \end{figure}
+\end{frame}
+%-E--------------------------------------------------------------------------E-%
+
+
+%-B--------------------------------------------------------------------------B-%
+\begin{frame}
+    \frametitle{Langues européennes}
+    \framesubtitle{Stemming (racinisation)}
     \begin{itemize} \itemsep10pt
-      \item \textbf{Stemming} (racinisation)
-      \begin{itemize}
         \item Porter~\cite{porter1980algorithm} et Krovetz~\cite{Krovetz:1993}
               pour l'anglais.
         \item Snowball\footnote{\url{http://snowball.tartarus.org/}}~: extension
               de l'algorithme de Porter à 15 langues.
-        \item Les méthodes de stemming permettent souvent une amélioration de la
-              performance mais pas toujours (les moteurs de recherche actuels 
-              ne l'utilisent pas).
-      \end{itemize}
-      \item \textbf{Decompounding} (décomposition)
-      \begin{itemize}
+        \begin{itemize}
+            \item \textbf{Langues romanes} (fr, es, pt, it, ro) \\
+                  \quad e.g.~contradictoires $\to$ contradictoir (fr) \\
+            \item \textbf{Langues germaniques} (de, nl) \\
+                  \quad e.g.~aufeinanderschlügen $\to$ aufeinanderschlug (de)
+            \item \textbf{Langues scandinaves} (se, no, da) \\
+                  \quad e.g.~klostergården $\to$ klostergård (se)
+            \item \textbf{Autres langues} (ru, fi)\\
+                  \quad e.g.~edeltäjälleen $\to$ edeltäj (fi) \\
+        \end{itemize}
+        \item Permet souvent une meilleure précision mais les moteurs de 
+              recherche actuels ne l'utilisent pas.
+    \end{itemize}
+\end{frame}
+%-E--------------------------------------------------------------------------E-%
+
+
+%-B--------------------------------------------------------------------------B-%
+\begin{frame}
+    \frametitle{Langues européennes}
+    \framesubtitle{Decompounding (décomposition)}
+    \begin{itemize} \itemsep10pt
         \item Dans les langues agglutinantes (e.g.~Allemand, Néerlandais, 
               Finnois), les mots se forment à partir d'une racine lexicale à 
               laquelle on peut ajouter un certain nombre d'affixes.
-        \item \textit{hungerstreiks} (de) est composé de \textit{hunger} (faim),
-              \textit{strieks} (grève) et peut aussi s'écrire en deux mots 
-              séparés.
-      \end{itemize}
-
-
-    
-
+        \begin{itemize}
+            \item e.g.~\textit{hungerstreiks} (de) est composé de 
+                  \textit{hunger} (faim), \textit{strieks} (grève) et peut aussi
+                  s'écrire en deux mots séparés.
+        \end{itemize}
+        \item De multiples expressions d'un même concept peut engendrer des 
+              \textit{mismatches} entre les documents et la requête.
+        \item Le processus de \textit{decompounding} correspond à la détection 
+              des mots constituants.
+        \begin{itemize}
+            \item Difficulté liée à l'ambiguïté des mots, par exemple 
+                  \textit{hungerstreiks} contient les mots suivants~: 
+                  \textit{erst}, \textit{hung}, \textit{hunger}, 
+                  \textit{hungers}, \textit{hungerst}, \textit{reik}, 
+                  \textit{reiks}, \textit{streik}, \textit{streiks}
+        \end{itemize}
     \end{itemize}
+\end{frame}
+%-E--------------------------------------------------------------------------E-%
 
+%-B--------------------------------------------------------------------------B-%
+\begin{frame}
+    \frametitle{Langues asiatiques}
+    \framesubtitle{Découpage en mots}
+    \begin{itemize} \itemsep10pt
+        \item Le Chinois, Japonais et Coréen (\textit{CJK languages}) partagent 
+              un héritage commun du aux liens culturels et linguistiques entre 
+              ces pays.
+        \item Utilisation d'idéogrammes (cn), de kanjis/kanas (jp) ou de 
+              hanjas/hangeul (ko).
+        \item Une caractéristique des textes chinois et japonais est l'absence 
+              d'espaces pour délimiter les mots.
+        \item e.g.~\begin{CJK}{UTF8}{min}わたしはフランス人です。\end{CJK} (jp)
+        \item[$\to$] \begin{CJK}{UTF8}{min}わたし~~~は~~~フランス人~~~です\end{CJK} \\
+                     watashi~~wa~~~~furansujin~~~~desu
+    \end{itemize}
+\end{frame}
+%-E--------------------------------------------------------------------------E-%
+
+%-B--------------------------------------------------------------------------B-%
+\begin{frame}
+    \frametitle{Autres langues}
+    \begin{itemize} \itemsep10pt
+        \item L'Arabe
+        \item Langues d'Inde
+    \end{itemize}
+\end{frame}
+%-E--------------------------------------------------------------------------E-%
+
+%##############################################################################%
+\section{La RI cross-lingue}
+%##############################################################################%
+
+
+%-B------------------------------PLAN----------------------------------------B-%
+\begin{frame}
+\frametitle{Plan}
+\tableofcontents[sectionstyle=show,subsectionstyle=hide,subsubsectionstyle=hide]
+\end{frame}
+%-E--------------------------------------------------------------------------E-%
+
+
+%-B--------------------------------------------------------------------------B-%
+\begin{frame}
+    \frametitle{Introduction}
+    \begin{itemize} \itemsep10pt
+        \item La difficulté principale en RI cross-lingue ou multilingue réside 
+              dans la représentation des documents et des requêtes.
+        \item Comment créer une représentation interne similaire d'une 
+              information écrite dans différentes langues~?
+        \item[fr] {\small Un Boeing 777 d'Asiana s'écrase à l'atterrissage à
+                  San Francisco}
+                  \vspace*{-0.8em}
+        \item[en] {\small Boeing 777 from Seoul crashes on landing at San 
+                  Francisco airport}
+                  \vspace*{-0.8em}
+        \item[jp] {\small \begin{CJK}{UTF8}{min}サンフランシスコ国際空港で６日、ボーイング７７７型機が着陸に失敗し、炎上した\end{CJK}}
+    \end{itemize}
 \end{frame}
 %-E--------------------------------------------------------------------------E-%
 
