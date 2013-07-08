@@ -7,6 +7,10 @@
 \usepackage{mathtools}
 % \usepackage{color}
 \usepackage{CJKutf8}
+\usepackage{arabtex}
+\usepackage{utf8}
+\usepackage{appendixnumberbeamer}
+
 
 \usetheme{default}
 \useinnertheme{default}
@@ -62,7 +66,7 @@
         \begin{itemize}
             \item Rappels des notions de RI
             \item Les difficultés liées aux langues
-            \item ...
+            \item La RI cross-lingue
         \end{itemize}
         \item Ce cours est basé sur le livre \textit{Cross-Language Information 
               Retrieval} de Jian-Yun Nie~\cite{DBLP:series/synthesis/2010Nie}.
@@ -310,7 +314,7 @@
               Finnois), les mots se forment à partir d'une racine lexicale à 
               laquelle on peut ajouter un certain nombre d'affixes.
         \begin{itemize}
-            \item e.g.~\textit{hungerstreiks} (de) est composé de 
+            \item[e.g.] \textit{hungerstreiks} (de) est composé de 
                   \textit{hunger} (faim), \textit{strieks} (grève) et peut aussi
                   s'écrire en deux mots séparés.
         \end{itemize}
@@ -324,10 +328,11 @@
                   \textit{erst}, \textit{hung}, \textit{hunger}, 
                   \textit{hungers}, \textit{hungerst}, \textit{reik}, 
                   \textit{reiks}, \textit{streik}, \textit{streiks}
-        \end{itemize}
+        \end{itemize} 
     \end{itemize}
 \end{frame}
 %-E--------------------------------------------------------------------------E-%
+
 
 %-B--------------------------------------------------------------------------B-%
 \begin{frame}
@@ -341,18 +346,62 @@
               hanjas/hangeul (ko).
         \item Une caractéristique des textes chinois et japonais est l'absence 
               d'espaces pour délimiter les mots.
-        \item e.g.~\begin{CJK}{UTF8}{min}わたしはフランス人です。\end{CJK} (jp)
+        \item[e.g.] \begin{CJK}{UTF8}{min}わたしはフランス人です。\end{CJK} (jp)
         \item[$\to$] \begin{CJK}{UTF8}{min}わたし~~~は~~~フランス人~~~です\end{CJK} \\
                      watashi~~wa~~~~furansujin~~~~desu
     \end{itemize}
 \end{frame}
 %-E--------------------------------------------------------------------------E-%
 
+
+%-B--------------------------------------------------------------------------B-%
+\begin{frame}
+    \frametitle{Langues asiatiques}
+    \framesubtitle{L'ambiguïté du découpage en mots}
+    \begin{figure}
+    \centering
+    \includegraphics[width=0.9\textwidth]{img/ambiguity.png}
+    \caption{Exemples de découpage en mots~\cite{li2006}.}
+    \end{figure}
+\end{frame}
+%-E--------------------------------------------------------------------------E-%
+
+%-B--------------------------------------------------------------------------B-%
+\begin{frame}
+    \frametitle{Langues asiatiques}
+    \framesubtitle{Plusieurs types d'ambiguïtés~\cite{wang:approche:recital13}}
+     \begin{itemize} \itemsep10pt
+        \item Ambiguïté de segmentation
+        \begin{itemize} 
+          \item[e.g.] \begin{CJK}{UTF8}{min}薄熙来自\end{CJK}
+          \item[$\to$] \begin{CJK}{UTF8}{min}薄 / 熙来 / 自\end{CJK} (Bo / Xilai / à partir de)
+          \item[$\to$] \begin{CJK}{UTF8}{min}薄 / 熙 / 来自\end{CJK} (Bo / Xi / vient de)
+          \item[$\to$] \begin{CJK}{UTF8}{min}薄 / 熙 / 来 / 自\end{CJK} (Bo / Xi / vient / depuis)
+        \end{itemize}
+       \item Ambiguïté de catégorisation
+       \begin{itemize} 
+          \item[e.g.] \begin{CJK}{UTF8}{min}白雪\end{CJK}
+          \item[$\to$] \begin{CJK}{UTF8}{min}白雪\end{CJK} neige blanche (nom)
+          \item[$\to$] \begin{CJK}{UTF8}{min}白雪\end{CJK} Bai Xue (nom propre de personne)
+        \end{itemize}
+    \end{itemize}
+\end{frame}
+%-E--------------------------------------------------------------------------E-%
+
+
 %-B--------------------------------------------------------------------------B-%
 \begin{frame}
     \frametitle{Autres langues}
     \begin{itemize} \itemsep10pt
-        \item L'Arabe
+        \item L'Arabe \\
+
+        % Lettres
+        % T -> \RL{ت} (), \RL{ة} () \\
+        % \RL{تسكن} // \RL{ت سكن} (T) -> habite (1ere)
+        % صراحة // صراح ة (T) -> franchise (Derniere)
+
+        %
+
         \item Langues d'Inde
     \end{itemize}
 \end{frame}
@@ -372,13 +421,13 @@
 
 
 %-B--------------------------------------------------------------------------B-%
-\begin{frame}
+\begin{frame}[allowframebreaks]
     \frametitle{Introduction}
     \begin{itemize} \itemsep10pt
-        \item La difficulté principale en RI cross-lingue ou multilingue réside 
+        \item La principale difficulté en RI cross-lingue et multilingue réside 
               dans la représentation des documents et des requêtes.
-        \item Comment créer une représentation interne similaire d'une 
-              information écrite dans différentes langues~?
+        \item Comment comparer des représentations construites à partir 
+              d'informations disponibles dans différentes langues~?
         \item[fr] {\small Un Boeing 777 d'Asiana s'écrase à l'atterrissage à
                   San Francisco}
                   \vspace*{-0.8em}
@@ -386,10 +435,49 @@
                   Francisco airport}
                   \vspace*{-0.8em}
         \item[jp] {\small \begin{CJK}{UTF8}{min}サンフランシスコ国際空港で６日、ボーイング７７７型機が着陸に失敗し、炎上した\end{CJK}}
+        \item[$\to$] Comment réussir à trouver les informations ci-dessus avec 
+                     la requête ``crash d'avion à San Francisco''~?
     \end{itemize}
+
+    \framebreak
+
+    \begin{figure}
+    \centering
+    \includegraphics[width=1\textwidth]{img/mapping.pdf}
+    \caption{\textit{Mapping} entre les représentations 
+            (Figure 1.2 de~\cite{DBLP:series/synthesis/2010Nie}).}
+    \end{figure}
+    \vspace*{-1em}
+    %
+    \begin{itemize}
+        \item Utiliser un module de \textbf{traduction automatique}.
+        \begin{enumerate} 
+            \item Mapping de la représentation du document dans celle de la requête~: approche par traduction de documents~\cite{oard1997}.
+            \item Mapping de la représentation de la requête dans celle du document~: approche par traduction de requêtes.
+            \item Mapping des représentations de la requête et du document dans un troisième espace (i.e.~langue pivot)~\cite{ruiz1999,Kishida:2005}.
+        \end{enumerate}
+    \end{itemize}
+
 \end{frame}
 %-E--------------------------------------------------------------------------E-%
 
+
+%-B--------------------------------------------------------------------------B-%
+\begin{frame}
+    \frametitle{Traduction du document vs de la requête}
+    \begin{itemize}
+        \item Les méthodes par traduction de la requête sont plus flexibles.
+        \begin{itemize}
+            \item L'utilisateur peut choisir les langues des documents 
+                  retrouvés.
+            \item Dans le cas ou il est capable de comprendre la traduction de 
+                  la requête, il peut la corriger.
+        \end{itemize}
+    \end{itemize}
+
+
+\end{frame}
+%-E--------------------------------------------------------------------------E-%
 
 %-B--------------------------------------------------------------------------B-%
 \begin{frame}
@@ -397,6 +485,7 @@
 \end{frame}
 %-E--------------------------------------------------------------------------E-%
 
+\appendix
 
 %##############################################################################%
 \section{Références}
