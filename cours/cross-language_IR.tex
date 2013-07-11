@@ -14,7 +14,8 @@
 \useinnertheme{default}
 \useoutertheme{default}
 \usefonttheme{serif}
-\usecolortheme[named=WildStrawberry]{structure}
+
+\usecolortheme[named=RoyalPurple]{structure}
 
 % Marges autour des slides
 \setbeamersize{text margin left=5mm, text margin right=5mm}
@@ -66,6 +67,7 @@
             \item Les difficultés liées aux langues
             \item La problématique de la RI cross-lingue
             \item La méthodes de traduction en RI cross-lingue
+            \item Le besoin de méthodes de RI cross-lingue et multilingue
             \item ...
         \end{itemize}
         \item Ce cours est basé sur le livre \textit{Cross-Language Information 
@@ -605,11 +607,133 @@
 
 
 %-B--------------------------------------------------------------------------B-%
-\begin{frame}
-    \frametitle{}
+\begin{frame}[allowframebreaks]
+    \frametitle{La traduction en RI cross-lingue}
+    \begin{itemize} \itemsep10pt
+        \item En plus des difficultés liées à la RI monolingue, la traduction 
+              automatique (TA) est la difficulté principale de la RI 
+              cross-lingue et multilingue.
+        \item La TA peut être nécessaire dans deux étapes~:
+        \begin{enumerate}
+            \item Sachant une requête en langue A (source), si l'utilisateur 
+                  recherche des documents en langue B (cible), les termes en 
+                  langue A doivent être traduits en langue B.
+            \item Une fois que l'ensemble des documents pertinents en langue B 
+                  est retrouvé, l'utilisateur peut vouloir les traduire en 
+                  langue A de façon à pouvoir les comprendre.
+        \end{enumerate}
+
+        \framebreak
+
+        \item Les deux étapes de traduction ci-dessus sont très différentes.
+        \begin{itemize}
+            \item La seconde est une tâche classique de TA de document.
+            \item \textbf{Cependant}, la TA n'est pas nécessairement un outil 
+                  approprié pour la première étape.
+        \end{itemize}
+        \item \textbf{Une syntaxe moins stricte est nécessaire}
+        \begin{itemize}
+            \item La tâche de traduction d'une requête en RI cross-lingue 
+                  n'est pas de la rendre lisible par un humain mais de permettre
+                  au système de faire un \textit{matching}.
+            \item[$\to$] La syntaxe/grammaire n'est donc pas très importante.
+        \end{itemize}
+        \item \textbf{Un niveau d'ambiguïté plus important}
+        \begin{itemize}
+            \item Les requêtes sont généralement très courtes (2-3 mots).
+        \end{itemize}
+
+        \framebreak
+
+        \item \textbf{Un effet d'expansion de requêtes}
+        \begin{itemize}
+            \item Le but de la traduction de requête est de produire une 
+                  représentation de cette dernière dans une autre langue.
+            \item De manière à pouvoir \textit{matcher} les termes de la requête
+                  avec ceux du document, il est préférable d'inclure toutes les
+                  alternatives de traduction.
+        \end{itemize}
+        \item \textbf{La pondération des termes}
+        \begin{itemize}
+            \item Le poids assigné à chacun des termes de la requête reflète 
+                  l'importance de ce terme lors du \textit{matching}.
+            \item En RI cross-lingue, le poids d'un terme doit reflèter son 
+                  importance mais également la qualité de la traduction.
+        \end{itemize}
+
+        \framebreak
+
+        \item Dans la littérature, en plus de la TA, les deux approches 
+              suivantes ont été largement testées et évaluées~:
+        \begin{enumerate}
+            \item Traduction basée sur dictionnaire~: les traductions possibles 
+                  des termes sont issues d'un dictionnaire 
+                  bilingue~\cite{Pirkola:2001}.
+            \item Traduction basée sur un corpus parallèle~: utilise les 
+                  relations de traduction entre deux langues des 
+                  termes~\cite{Chen00parallelweb}.
+        \end{enumerate}
+        \item Il n'y a pas de séparation stricte entre les approches, 
+              e.g.~certaines approches de TA utilisent des dictionnaires.
+        \item[$\to$] En séparant les approches utilisant un système de TA, nous
+                     mettons en avant le fait que les systèmes de TA sont dans la
+                     plupart des cas utilisés comme une \textit{black box}.
+    \end{itemize}
 \end{frame}
 %-E--------------------------------------------------------------------------E-%
 
+%##############################################################################%
+\section{Le besoin de méthodes de RI cross-lingue et multilingue}
+%##############################################################################%
+
+
+%-B------------------------------PLAN----------------------------------------B-%
+\begin{frame}
+\frametitle{Plan}
+\tableofcontents[sectionstyle=show,subsectionstyle=hide,subsubsectionstyle=hide]
+\end{frame}
+%-E--------------------------------------------------------------------------E-%
+
+
+%-B--------------------------------------------------------------------------B-%
+\begin{frame}
+    \frametitle{L'utilité de la RI cross-lingue et multilingue}
+    \begin{itemize} \itemsep10pt
+        \item Bien que le besoin de méthodes de RI monolingue ne soit plus à 
+              démontrer, celui de méthodes cross-lingue et multilingue 
+              peut apparaître moins évident.
+        \item L'objectif en RI est d'identifier les informations pertinentes.
+        \begin{itemize}
+            \item La forme de la description de l'information n'a que peu
+                  d'importance~: un texte, une image, un tableau, etc.
+            \item Les informations ne sont utiles que si elles sont 
+                  compréhensibles.
+        \end{itemize}
+        \item L'obstacle de la compréhension de documents dans une langue 
+              différente est la raison pour laquelle les moteurs de recherche 
+              actuels sont monolingues.
+        \item[$\to$] \textbf{Cependant}, cet obstacle est en train de tomber 
+                     avec les progrès faits dans les outils de TA.
+    \end{itemize}
+\end{frame}
+%-E--------------------------------------------------------------------------E-%
+
+%-B--------------------------------------------------------------------------B-%
+\begin{frame}[allowframebreaks]
+    \frametitle{Rechercher des documents dans une autre langue}
+    \begin{itemize} \itemsep10pt
+        \item Indépendamment de la disponibilité des outils de TA, il y a 
+              plusieurs raisons de rechercher des documents sans égard pour 
+              la langue.
+        \item L'information recherchée peut être sous une forme directement 
+              compréhensible (e.g.~image). Les méthodes de recherche d'images 
+              sont en grande partie basées sur leurs descriptions textuelles.
+        \item L'information recherchée peut ne pas exister dans la langue de 
+              l'utilisateur.
+        \item Les documents peuvent mélanger plusieurs langues.
+    \end{itemize}
+\end{frame}
+%-E--------------------------------------------------------------------------E-%
 
 
 %-B--------------------------------------------------------------------------B-%
@@ -619,6 +743,7 @@
 %-E--------------------------------------------------------------------------E-%
 
 \appendix
+
 
 %##############################################################################%
 \section{Références}
