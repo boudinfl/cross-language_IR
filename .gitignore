@@ -26,3 +26,13 @@ cours/cross-language_IR.err
 cours/cross-language_IR.vrb
 
 cours/missfont.log
+
+projet/sujet/seg_jap.aux
+
+projet/sujet/seg_jap.fdb_latexmk
+
+*.fls
+
+projet/sujet/seg_jap.log
+
+projet/sujet/seg_jap.synctex.gz
