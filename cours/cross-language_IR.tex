@@ -43,6 +43,14 @@
 \institute{Département informatique, Université de Nantes}
 \date[30 juillet 2013 / Rév.~1]{Révision~1 du 30 juillet 2012}
 
+\AtBeginSection[]
+{
+\begin{frame}
+\frametitle{Plan}
+\tableofcontents[sectionstyle=show,subsectionstyle=hide,subsubsectionstyle=hide]
+\end{frame}
+}
+
 \begin{document}
 
 
@@ -51,24 +59,20 @@
 %-E--------------------------------------------------------------------------E-%
 
 
-%##############################################################################%
-\section{Introduction}
-%##############################################################################%
-
-
 %-B--------------------------------------------------------------------------B-%
 \begin{frame}
     \frametitle{Préface}
     \begin{itemize} \itemsep10pt
-        \item Volume horaire (2h40)
-        \item Notions abordées dans ce cours
+        \item Volume horaire
         \begin{itemize}
-            \item Rappels des notions de RI
-            \item Les difficultés liées aux langues
-            \item La problématique de la RI cross-lingue
-            \item La méthodes de traduction en RI cross-lingue
-            \item Le besoin de méthodes de RI cross-lingue et multilingue
-            \item ...
+            \item 1 CM - 2 TD/TP
+        \end{itemize}
+        \item Notions abordées dans ce cours~:
+        \begin{itemize}
+            \item Rappels des notions de RI.
+            \item Sensibilisation aux difficultés liées aux langues.
+            \item Présentation de la problématique et des méthodes de RI 
+                  cross-lingue.
         \end{itemize}
         \item Ce cours est basé sur le livre \textit{Cross-Language Information 
               Retrieval} de Jian-Yun Nie~\cite{DBLP:series/synthesis/2010Nie}.
@@ -102,14 +106,6 @@
 %##############################################################################%
 \section{Rappels des notions de RI}
 %##############################################################################%
-
-
-%-B------------------------------PLAN----------------------------------------B-%
-\begin{frame}
-\frametitle{Plan}
-\tableofcontents[sectionstyle=show,subsectionstyle=hide,subsubsectionstyle=hide]
-\end{frame}
-%-E--------------------------------------------------------------------------E-%
 
 
 %-B--------------------------------------------------------------------------B-%
@@ -244,13 +240,6 @@
 \section{Les difficultés liées aux langues}
 %##############################################################################%
 
-
-%-B------------------------------PLAN----------------------------------------B-%
-\begin{frame}
-\frametitle{Plan}
-\tableofcontents[sectionstyle=show,subsectionstyle=hide,subsubsectionstyle=hide]
-\end{frame}
-%-E--------------------------------------------------------------------------E-%
 
 %-B--------------------------------------------------------------------------B-%
 \begin{frame}
@@ -452,14 +441,6 @@
 %##############################################################################%
 
 
-%-B------------------------------PLAN----------------------------------------B-%
-\begin{frame}
-\frametitle{Plan}
-\tableofcontents[sectionstyle=show,subsectionstyle=hide,subsubsectionstyle=hide]
-\end{frame}
-%-E--------------------------------------------------------------------------E-%
-
-
 %-B--------------------------------------------------------------------------B-%
 \begin{frame}
     \frametitle{Introduction}
@@ -594,16 +575,8 @@
 
 
 %##############################################################################%
-\section{La méthodes de traduction en RI cross-lingue}
+\section{La traduction en RI cross-lingue}
 %##############################################################################%
-
-
-%-B------------------------------PLAN----------------------------------------B-%
-\begin{frame}
-\frametitle{Plan}
-\tableofcontents[sectionstyle=show,subsectionstyle=hide,subsubsectionstyle=hide]
-\end{frame}
-%-E--------------------------------------------------------------------------E-%
 
 
 %-B--------------------------------------------------------------------------B-%
@@ -683,16 +656,8 @@
 %-E--------------------------------------------------------------------------E-%
 
 %##############################################################################%
-\section{Le besoin de méthodes de RI cross-lingue et multilingue}
+\section{L'utilité de la RI cross-lingue}
 %##############################################################################%
-
-
-%-B------------------------------PLAN----------------------------------------B-%
-\begin{frame}
-\frametitle{Plan}
-\tableofcontents[sectionstyle=show,subsectionstyle=hide,subsubsectionstyle=hide]
-\end{frame}
-%-E--------------------------------------------------------------------------E-%
 
 
 %-B--------------------------------------------------------------------------B-%
@@ -720,20 +685,54 @@
 
 %-B--------------------------------------------------------------------------B-%
 \begin{frame}[allowframebreaks]
-    \frametitle{Rechercher des documents dans une autre langue}
+    \frametitle{Rechercher dans une autre langue}
     \begin{itemize} \itemsep10pt
         \item Indépendamment de la disponibilité des outils de TA, il y a 
-              plusieurs raisons de rechercher des documents sans égard pour 
+              de nombreuses raisons de rechercher des documents sans égard pour 
               la langue.
         \item L'information recherchée peut être sous une forme directement 
-              compréhensible (e.g.~image). Les méthodes de recherche d'images 
-              sont en grande partie basées sur leurs descriptions textuelles.
+              compréhensible (e.g.~image, tableau).
+        \begin{itemize}
+              \item[$\to$] Les méthodes de recherche d'images sont en grande 
+              partie basées sur leurs descriptions textuelles.
+        \end{itemize}
         \item L'information recherchée peut ne pas exister dans la langue de 
               l'utilisateur.
+        \begin{itemize}
+              \item[e.g.] Un anglophone intéressé par des informations sur un 
+                    festival de danse traditionnelle bretonne.
+        \end{itemize}
+        
+        \framebreak
+        
         \item Les documents peuvent mélanger plusieurs langues.
+        \begin{itemize}
+          \item[e.g.] \begin{CJK}{UTF8}{min}
+                      Internetの進化 (jp) ou インヌーネットの進化 (jp)
+                      \end{CJK} \\
+                      internet no shinka (évolution d'Internet)
+        \end{itemize}
+        \item Un utilisateur peut vouloir retrouver \textbf{toute} l'information
+              pertinente, quelque soit la langue utilisée.
+        \begin{itemize}
+        \item[$\to$] Il s'agit de \textit{Recall-oriented retrieval}.
+        \item[e.g.] Recherche de brevet (\textit{patent retrieval}), création 
+                    d'état de l'art.
+        \end{itemize}
+        \item Un nombre important et croissant d'utilisateurs sont capables de 
+              comprendre plus d'une langue.
+        \begin{itemize}
+        \item[$\to$] Un système de RI cross-lingue ou mutlilingue peut faciliter
+                    l'accès aux informations (pas besoin de traduire la requête).
+        \end{itemize}
     \end{itemize}
 \end{frame}
 %-E--------------------------------------------------------------------------E-%
+
+% %##############################################################################%
+% \section{Historique de la RI cross-lingue}
+% %##############################################################################%
+
 
 
 %-B--------------------------------------------------------------------------B-%
