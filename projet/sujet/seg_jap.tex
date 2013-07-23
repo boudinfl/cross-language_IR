@@ -1,8 +1,10 @@
 \documentclass[12pt,a4paper]{article}
-\usepackage[top=1cm, bottom=1cm, left=1cm, right=1cm]{geometry}
+\usepackage[top=1cm, bottom=1.5cm, left=1cm, right=1cm]{geometry}
 \usepackage[utf8]{inputenc}
 \usepackage[french]{babel}
 \usepackage[T1]{fontenc}
+\usepackage{CJKutf8}
+\usepackage{url}
 
 \begin{document}
 
@@ -14,16 +16,44 @@
 
 \section{Introduction}
 
-La langue Japonaise possède de nombreuses caractéristiques qui la rendent difficile à traiter du point de vue de la Recherche d'Information (RI).
+La langue Japonaise possède de nombreuses caractéristiques qui la rendent (plus?) difficile à traiter du point de vue de la Recherche d'Information (RI).
 L'absence de marqueurs explicites (e.g.~espaces) pour délimiter les mots en fait partie.
 Afin de pouvoir indexer les documents rédigés en langue japonaise, un processus de segmentation en mots (\textit{tokenisation}) doit être au préalable appliqué sur chaque document.
 Le découpage d'une phrase en mots peut être ambigu du fait de l'absence de marqueurs entre ces derniers.
-Les erreurs de segmentation sont donc fréquentes et ont un impact important sur la précisions des systèmes de RI.
+Les erreurs de segmentation sont donc fréquentes et elles ont un impact direct sur la précisions des systèmes de RI.
 
 \section{Travail demandé}
 
-Votre tâche consiste à développer un système supervisé de segmentation en mots pour le Japonais.
-Vous disposez d'un corpus d'entraînement composé de 4000 phrases segmentées manuellement.
+Votre tâche consiste à développer un système de segmentation en mots pour le Japonais.
+Pour cela, vous disposez d'un ensemble d'apprentissage composé de 4000 phrases.
+Chaque phrase de cet ensemble a été segmentée manuellement, un exemple est montré ci-dessous~:
 
+\begin{table}[h!]
+\centering
+\begin{CJK}{UTF8}{min}
+\begin{tabular}{l}
+    ここで私は２つの選択肢を迫られました。\\[0.5em]
+    ここ \quad で \quad 私 \quad は \quad ２ \quad つ \quad の \quad 選択肢 \quad 
+    を \quad 迫ら \quad れ \quad ました \quad 。
+\end{tabular}
+\end{CJK}
+\end{table}
+
+Dans un premier temps, vous devez implémenter la méthode basée sur un modèle de Markov caché (HMM, \textit{Hidden Markov Model}) présentée dans~\cite{lamport94} (lien direct~: \url{http://acl.ldc.upenn.edu/H/H94/H94-1054.pdf}).
+Bien que simple, cette méthode donne de bons résultats (89.3\% de f-mesure sur le corpus de test).
+
+Dans un second temps, réfléchissez aux moyens d'améliorer cette méthode.
+Proposez et implémentez vos idées d'amélioration dont vous vérifierez ensuite l'impact sur l'ensemble de test qui vous est fourni.
+
+\begin{thebibliography}{9}
+
+\bibitem{lamport94}
+  Constantine P. Papageorgiou,
+  \emph{Japanese word segmentation by hidden Markov model}.
+  Proceedings of the workshop on Human Language Technology (HLT '94),
+  pages 283--288,
+  1994.
+
+\end{thebibliography}
 
 \end{document}  
