@@ -43,11 +43,13 @@
 \institute{Département informatique, Université de Nantes}
 \date[30 juillet 2013 / Rév.~1]{Révision~1 du 30 juillet 2012}
 
+% Pour ajouter le plan au début de chaque section
 \AtBeginSection[]
 {
 \begin{frame}
 \frametitle{Plan}
-\tableofcontents[sectionstyle=show,subsectionstyle=hide,subsubsectionstyle=hide]
+\addtocontents{toc}{\protect\vspace*{-0.5em}}
+\tableofcontents[sectionstyle=show/shaded,subsectionstyle=hide,subsubsectionstyle=hide]
 \end{frame}
 }
 
@@ -65,7 +67,7 @@
     \begin{itemize} \itemsep10pt
         \item Volume horaire
         \begin{itemize}
-            \item 1 CM - 2 TD/TP
+            \item 1 CM - 3 TD/TP
         \end{itemize}
         \item Notions abordées dans ce cours~:
         \begin{itemize}
@@ -729,19 +731,40 @@
 \end{frame}
 %-E--------------------------------------------------------------------------E-%
 
-% %##############################################################################%
-% \section{Historique de la RI cross-lingue}
-% %##############################################################################%
-
+%##############################################################################%
+\section{Historique}
+%##############################################################################%
 
 
 %-B--------------------------------------------------------------------------B-%
 \begin{frame}
-    \frametitle{}
+    \frametitle{Historique de la RI cross-lingue}
+    \begin{itemize} \itemsep10pt
+        \item Les premiers travaux sur la RI cross-lingue remontent aux 
+              \textbf{années 60}~\cite{Salton:1969:APF:990403.990407}.
+        \item Le nombre de travaux a sérieusement augmenté au milieu des 
+              \textbf{années 90}, lorsque le Web a commençé à être populaire.
+        \item \textbf{1997}, première campagne d'évaluation TREC (\textit{Text 
+              REtrieval Conference}) en RI cross-lingue est organisée par le 
+              NIST (\textit{National Institute of Standards and 
+              Technology})~\cite{Voorhees:2000:OST:342528.342531}.
+        \item \textbf{1999}, expérimentations sur les langues asiatiques 
+              débutent avec l'atelier NTCIR organisé par le NII 
+              (\textit{National Institute for Informatics}).
+        \item \textbf{2000}, expérimentations sur les langues européennes 
+              débutent avec CLEF (\textit{Cross-Language Experiment Forum}).
+    \end{itemize}
 \end{frame}
 %-E--------------------------------------------------------------------------E-%
 
-\appendix
+
+% %-B--------------------------------------------------------------------------B-%
+% \begin{frame}
+%     \frametitle{}
+% \end{frame}
+% %-E--------------------------------------------------------------------------E-%
+
+%\appendix
 
 
 %##############################################################################%
@@ -751,6 +774,7 @@
 
 %-B--------------------------------------------------------------------------B-%
 \begin{frame}[allowframebreaks]
+    \fontsize{9pt}{10}\selectfont
     \frametitle{References}
     \bibliographystyle{alpha}
     \bibliography{bibliography}
