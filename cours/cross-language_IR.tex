@@ -36,6 +36,8 @@
 \setlength{\leftmargini}{0.6cm}
 \setlength{\leftmarginii}{0.4cm}
 \setlength{\leftmarginiii}{0.4cm}
+\setbeamercolor{itemize subitem}{fg=RubineRed}
+\linespread{1.15}
 
 \title{Recherche d'information cross-lingue}
 \subtitle{Applications multilingues - module X9IT100}
@@ -99,7 +101,7 @@
             \item Le web offre une mine d'information riche et multilingue à 
                   laquelle nous souhaitons avoir accès.
         \end{itemize}
-        \item \'Emergence de la problématique de la RI cross-lingue
+        \item \'Emergence de la problématique de la RI cross-lingue.
     \end{itemize}
 \end{frame}
 %-E--------------------------------------------------------------------------E-%
@@ -133,6 +135,9 @@
               \textit{terme}, qui peut être un mot (e.g.~\textit{computer}), un 
               stem (e.g.~\textit{comput}) ou une expression multimots 
               (e.g.~\textit{computer system}).
+
+        \framebreak
+
         \item \textbf{Modèle booléen}
         \begin{itemize}
             \item Les documents sont représentés par une conjonction de termes, 
@@ -141,7 +146,7 @@
             \item Une requête est représentée par une expression booléenne, 
                   e.g.~$Q = (t_1 \land t_2) \lor t_3$.
             \item Un document est considéré comme pertinent si et seulement si 
-                  il y a l'implication logique $D \to P$.
+                  il y a l'implication logique $D \Rightarrow P$.
         \end{itemize}
 
         \framebreak
@@ -165,16 +170,29 @@
         \begin{itemize}
             \item Les poids des termes peuvent être binaires, i.e.~1 pour la 
                   présence et 0 l'absence, ou calculés avec $tf \times idf$.
+
+            \framebreak
+
             \item La pertinence des documents est habituellement calculée avec 
                   une mesure de similarité cosinus.
         \end{itemize}
+        %
+        \begin{align*}
+          \text{sim}(d,q) = &~\frac{ \mathbf{d} \cdot \mathbf{q} }
+                                   { \left\|\mathbf{d}\right\| 
+                                     \left\|\mathbf{q}\right\| } \\[0.5em]
+                          = &~\frac{ \sum _{i=1}^n d_i q_i }
+                                   { \sqrt{\sum_{i=1}^n d_i^2}
+                                     \sqrt{\sum _{i=1}^n q_i^2} }
+        \end{align*}
 
         \framebreak
 
         \item \textbf{Modèle probabiliste}~\cite{robertson1976relevance}
          \begin{itemize}
             \item Le score de pertinence d'un document $D$ par rapport à une 
-                  requête $Q$ est estimé à partir de $P(\text{pertinence}|D,Q)$.
+                  requête $Q$ est estimé à partir de $P(\text{pertinence}|D,Q)$,
+                  la probabilité de pertinence de $D$ par rapport à $Q$.
             \item Okapi BM25~\cite{DBLP:conf/trec/RobertsonWHGL92} est le modèle 
                   le plus utilisé.
             \begin{equation*}
@@ -199,7 +217,7 @@
             \end{equation*}
             \item En considérant les termes de la requêtes comme indépendants~:
             \begin{equation*}
-              P(Q|D) = \sum_{t_i \in Q} P(t_i | D)
+              P(Q|D) = \prod_{t_i \in Q} P(t_i | D)
             \end{equation*}
             \item $P(t_i | D)$ est estimée par un modèle de langue du document.
         \end{itemize}
@@ -253,7 +271,7 @@
             disponibilité de grandes collections de documents dans de nombreuses 
             langues.
       \item Les traitements ``basiques'' développés pour les langues 
-            européennes sont en partie ré-utilisable pour d'autres langues, 
+            européennes sont en partie ré-utilisables pour d'autres langues, 
             mais certaines nécessitent des traitements spécifiques.
     \end{itemize}
 \end{frame}
@@ -275,7 +293,7 @@
 
 
 %-B--------------------------------------------------------------------------B-%
-\begin{frame}
+\begin{frame}[shrink=5]
     \frametitle{Langues européennes}
     \framesubtitle{Stemming (racinisation)}
     \begin{itemize} \itemsep10pt
@@ -301,7 +319,7 @@
 
 
 %-B--------------------------------------------------------------------------B-%
-\begin{frame}
+\begin{frame}[shrink=5]
     \frametitle{Langues européennes}
     \framesubtitle{Decompounding (décomposition)}
     \begin{itemize} \itemsep10pt
@@ -313,7 +331,7 @@
                   \textit{hunger} (faim), \textit{strieks} (grève) et peut aussi
                   s'écrire en deux mots séparés.
         \end{itemize}
-        \item De multiples expressions d'un même concept peut engendrer des 
+        \item De multiples expressions d'un même concept peuvent engendrer des 
               \textit{mismatches} entre les documents et la requête.
         \item Le processus de \textit{decompounding} correspond à la détection 
               des mots constituants.
@@ -347,7 +365,7 @@
 
 
 %-B--------------------------------------------------------------------------B-%
-\begin{frame}
+\begin{frame}[shrink=5]
     \frametitle{Langues asiatiques}
     \framesubtitle{L'ambiguïté du découpage en mots}
     \begin{CJK*}{UTF8}{gbsn}
@@ -428,7 +446,6 @@
             \end{columns}
             
             \vspace*{1em}
-
 
             \item Les voyelles peuvent être omises
             \item[] ...
@@ -520,7 +537,7 @@
             \item L'utilisateur peut choisir les langues des documents à
                   chercher.
             \item Dans le cas ou il est capable de comprendre la requête 
-                  traduite traduction, il peut la corriger ou l'étendre.
+                  traduite, il peut la corriger ou l'étendre.
         \end{itemize}
         \item \textbf{Cependant}, la traduction automatique de la requête peut 
               être ambiguë de part la taille très limitée du contexte.
@@ -547,7 +564,7 @@
         \item \textbf{De plus}, les documents doivent être au préalable traduits
               dans toutes les langues possibles.
         \begin{itemize}
-            \item Iréaliste avec les capacités de calcul et de stockage 
+            \item Irréaliste avec les capacités de calcul et de stockage 
                   actuelles.
         \end{itemize}
         \item[$\to$] La majorité des approches en RI cross-lingue utilisent donc
@@ -737,7 +754,7 @@
 
 
 %-B--------------------------------------------------------------------------B-%
-\begin{frame}
+\begin{frame}[shrink=5]
     \frametitle{Historique de la RI cross-lingue}
     \begin{itemize} \itemsep10pt
         \item Les premiers travaux sur la RI cross-lingue remontent aux 
@@ -764,11 +781,11 @@
 % \end{frame}
 % %-E--------------------------------------------------------------------------E-%
 
-%\appendix
+\appendix
 
 
 %##############################################################################%
-\section{Références}
+\section*{Références}
 %##############################################################################%
 
 
