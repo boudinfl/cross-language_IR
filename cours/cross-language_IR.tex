@@ -1,4 +1,4 @@
-\documentclass[12pt,aspectratio=43,dvipsnames,table]{beamer}
+\documentclass[11pt,aspectratio=43,dvipsnames,table]{beamer}
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage[francais]{babel}
@@ -9,11 +9,13 @@
 \usepackage{arabtex}
 \usepackage{appendixnumberbeamer}
 
+\usepackage[sfdefault,scaled=.85,light]{FiraSans}
+\DeclareTextFontCommand{\textbf}{\firabook}
 
 \usetheme{default}
 \useinnertheme{default}
 \useoutertheme{default}
-\usefonttheme{serif}
+\usefonttheme[onlymath]{serif}
 
 \usecolortheme[named=RoyalPurple]{structure}
 
@@ -43,7 +45,7 @@
 \subtitle{Applications multilingues - module X9IT100}
 \author{Florian Boudin}
 \institute{Département informatique, Université de Nantes}
-\date[14 novembre 2013 / Rév.~2]{Révision~2 du 14 novembre 2013}
+\date[3 novembre 2015 / Rév.~3]{Révision~3 du 3 novembre 2015}
 
 % Pour ajouter le plan au début de chaque section
 \AtBeginSection[]
@@ -177,14 +179,13 @@
                   une mesure de similarité cosinus.
         \end{itemize}
         %
-        \begin{align*}
-          \text{sim}(d,q) = &~\frac{ \mathbf{d} \cdot \mathbf{q} }
-                                   { \left\|\mathbf{d}\right\| 
-                                     \left\|\mathbf{q}\right\| } \\[0.5em]
-                          = &~\frac{ \sum _{i=1}^n d_i q_i }
+        \begin{equation*}
+          \text{sim}(d,q) = \frac{ \mathbf{d} \cdot \mathbf{q} }
+                                   { \left\|\mathbf{d}\right\| \left\|\mathbf{q}\right\| }
+                          = \frac{ \sum _{i=1}^n d_i q_i }
                                    { \sqrt{\sum_{i=1}^n d_i^2}
                                      \sqrt{\sum _{i=1}^n q_i^2} }
-        \end{align*}
+        \end{equation*}
 
         \framebreak
 
@@ -293,7 +294,7 @@
 
 
 %-B--------------------------------------------------------------------------B-%
-\begin{frame}[shrink=5]
+\begin{frame}
     \frametitle{Langues européennes}
     \framesubtitle{Stemming (racinisation)}
     \begin{itemize} \itemsep10pt
@@ -319,7 +320,7 @@
 
 
 %-B--------------------------------------------------------------------------B-%
-\begin{frame}[shrink=5]
+\begin{frame}
     \frametitle{Langues européennes}
     \framesubtitle{Decompounding (décomposition)}
     \begin{itemize} \itemsep10pt
